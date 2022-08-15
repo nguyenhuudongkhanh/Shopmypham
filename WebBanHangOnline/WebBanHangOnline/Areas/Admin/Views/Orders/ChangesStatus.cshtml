@@ -1,0 +1,81 @@
+﻿@model WebBanHangOnline.Models.Order
+<div class="modal-body">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin đơn hàng: @Model.OrdersId</h4>
+            <div class="table-responsive">
+                <table class="product-info-table m-t-20">
+                    <tbody>
+                        <tr>
+                            <td>Mã đơn hàng:</td>
+                            <td class="text-dark font-weight-semibold">@Model.OrdersId</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày mua hàng:</td>
+                            <td class="text-dark font-weight-semibold">@Model.OrderDate</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>Khách hàng:</td>
+                            <td>@Model.Customers.FullName</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td class="text-dark font-weight-semibold">@Model.Customers.Phone</td>
+
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ:</td>
+                            <td class="text-dark font-weight-semibold">@Model.Customers.Address</td>
+
+                        </tr>
+                        
+                        @*<tr>
+                            <td>Tổng tiền:</td>
+                            <td class="text-dark font-weight-semibold">@Model.TotalMoney.Value.ToString("#,##0") VND</td>
+
+                        </tr>*@
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-area="Admin" asp-controller="Orders" asp-action="ChangesStatus" asp-route-id="@Model.OrdersId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrdersId" />
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Chọn trạng thái đon hàng</label>
+                        <select class="form-control" asp-for="TransactStatusId" asp-items="ViewBag.TransactStatusId" required>
+                            <option value="0" disabled selected>Chọn trạng thái đơn hàng</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Đã thanh toán</label>
+                    <input asp-for="Paid" type="checkbox" />
+                    <span asp-validation-for="Paid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Đơn hàng bị hủy</label>
+                    <input asp-for="Deleted" type="checkbox" />
+                    <span asp-validation-for="Deleted" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+            </div>
+        </form>
+        
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿@model List<Product>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.ProductsId
+            </td>
+
+            <td>
+                @item.ProductsName
+            </td>
+            <td>
+                @item.ShortDesc
+            </td>
+            <td>
+                @item.Description
+            </td>
+
+            <td>@item.Cat.CatName</td>
+            <td>@item.Price.Value.ToString("#,##0") VND</td>
+            <td>@item.Discount.Value.ToString("#,##0") VND</td>
+            <td><img width="150" height="150" src="~/images//products/@item.Thumb" alt="@item.ProductsName"></td>
+            <td>@item.DateCreated</td>
+            <td>
+                @if (item.BestSellers == true)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Active</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-warning badge-dot m-r-10"></div>
+                        <div>Block</div>
+                    </div>
+
+                }
+            </td>
+            <td>
+                @if (item.HomeFlag == true)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Active</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-warning badge-dot m-r-10"></div>
+                        <div>Block</div>
+                    </div>
+
+                }
+            </td>
+            <td>
+
+                @if (item.Active == true)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Active</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-warning badge-dot m-r-10"></div>
+                        <div>Block</div>
+                    </div>
+
+                }
+            </td>
+            <td>@item.UnitslnStock</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductsId" class="dropdown-item d-block p-h-15 p-v-10">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="anticon anticon-edit"></i>
+                            <span class="m-l-10 text-success    ">Edit</span>
+                        </div>
+
+                    </div>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.ProductsId" class="dropdown-item d-block p-h-15 p-v-10">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="anticon anticon-delete"></i>
+                            <span class="m-l-10 text-primary">Delete</span>
+                        </div>
+
+                    </div>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.ProductsId" class="dropdown-item d-block p-h-15 p-v-10">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="anticon anticon-form"></i>
+                            <span class="m-l-10 text-danger">Detail</span>
+                        </div>
+
+                    </div>
+                </a>
+
+           
+            </td>
+        </tr>
+    }
+
+}

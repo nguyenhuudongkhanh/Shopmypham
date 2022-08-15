@@ -1,0 +1,76 @@
+﻿@model WebBanHangOnline.Models.Page
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string url = $"/page/{Model.Alias}";
+}
+
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/mua_hang_online.jpg">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item">
+                        <h1 class="breadcrumb-heading">@Model.PageName</h1>
+                        <ul>
+                            <li>
+                                <a href="/">Home <i class="pe-7s-angle-right"></i></a>
+                            </li>
+                            <li>@Model.PageName</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blog-detail-item">
+                        <div class="blog-img">
+                          
+                            <img class="img-full" src="~/images/news/mua_hang_online.jpg" alt="@Model.Title">
+                        </div>
+                        <div class="blog-content text-start pb-0">
+                            <div class="blog-meta text-dim-gray pb-3">
+                                <ul>
+                                    <li class="date"><i class="fa fa-calendar-o me-2"></i>@Model.CreatedDate</li>
+                                   
+                                </ul>
+                            </div>
+                            <h5 class="title mb-4">
+                                <a href="blog-detail-left-sidebar.html">@Model.PageName</a>
+                            </h5>
+                            <p class="short-desc mb-4 mb-7">@Model.Contents</p>
+                          
+                            <div class="feedback-area section-space-top-55">
+                                <h4 class="heading mb-1">Leave a comment</h4>
+                                <form class="feedback-form pt-8" action="#">
+                                    <div class="group-input">
+                                        <div class="form-field me-md-6 mb-6 mb-md-0">
+                                            <input type="text" name="name" placeholder="Your Name*" class="input-field">
+                                        </div>
+                                        <div class="form-field me-md-6 mb-6 mb-md-0">
+                                            <input type="text" name="email" placeholder="Your Email*" class="input-field">
+                                        </div>
+                                        <div class="form-field">
+                                            <input type="text" name="number" placeholder="Phone number" class="input-field">
+                                        </div>
+                                    </div>
+                                    <div class="form-field mt-6">
+                                        <textarea name="message" placeholder="Message" class="textarea-field"></textarea>
+                                    </div>
+                                    <div class="button-wrap mt-8">
+                                        <button type="submit" value="submit" class="btn btn-custom-size lg-size btn-secondary btn-primary-hover btn-lg rounded-0" name="submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

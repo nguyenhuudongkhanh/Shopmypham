@@ -1,0 +1,117 @@
+﻿@model WebBanHangOnline.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+    List<OrdersDetail> orderDetail = ViewBag.Detail;
+}
+
+<div class="main-content">
+    <div class="page-header">
+        <h2 class="header-title">Invoice</h2>
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                <a class="breadcrumb-item" href="#">Pages</a>
+                <span class="breadcrumb-item active">Invoice</span>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div id="invoice" class="p-h-30">
+
+                    <div class="row m-t-20 lh-2">
+                        <div class="col-sm-9">
+                            <h3 class="p-l-10 m-t-10">Đơn hàng:</h3>
+                            <address class="p-l-10 m-t-10">
+                                <span class="font-weight-semibold text-dark">@Model.Customers.FullName</span><br>
+                                <span>@Model.Customers.Phone </span><br>
+                                <span>@Model.Customers.Address</span>
+                            </address>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="m-t-80">
+                                <div class="text-dark text-uppercase d-inline-block">
+                                    <span class="font-weight-semibold text-dark">Mã đơn hàng :</span>
+                                </div>
+                                <div class="float-right">#@Model.OrdersId</div>
+                            </div>
+                            <div class="text-dark text-uppercase d-inline-block">
+                                <span class="font-weight-semibold text-dark">Date:</span>
+                            </div>
+                            <div class="float-right">@Model.OrderDate</div>
+                        </div>
+                    </div>
+                    <div class="m-t-20">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+
+                                        <th>Tên sản phẩm</th>
+                                        <th>Giá sản phẩm</th>
+                                        <th>Giảm giá</th>
+                                        <th>Số lượng sản phẩm</th>
+                                        <th>Ngày đặt hàng</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (orderDetail != null && orderDetail.Count() > 0)
+                                    {
+                                        int i = 1;
+
+                                        @foreach (var item in orderDetail)
+                                        {
+                                            <tr>
+                                                <th>@item.OrdersDetailsId</th>
+
+                                                <td>@item.Products.ProductsName</td>
+
+                                                <td>@item.Price.Value.ToString("#,#0")</td>
+                                                <td>@item.Discount.Value.ToString("#,#0")</td>
+                                                <td>@item.Amount</td>
+                                                <td>@item.CreateDate</td>
+
+                                            </tr>
+                                            i++;
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="row m-t-30 lh-1-8">
+                            <div class="col-sm-12">
+                                <div class="float-right text-right">
+                                    <p>Sub - Total amount: $2,325</p>
+                                    <p>vat (10%) : $232 </p>
+                                    <hr>
+                                    <h3><span class="font-weight-semibold text-dark">Total :</span>@Model.TotalMoney.Value.ToString("#,#0")</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <form asp-action="Delete" asp-route-id="@Model.OrdersId">
+                            <input type="hidden" asp-for="OrdersId" />
+                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

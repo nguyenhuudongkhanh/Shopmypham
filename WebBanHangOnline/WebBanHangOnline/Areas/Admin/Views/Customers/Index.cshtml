@@ -1,0 +1,109 @@
+﻿    @using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebBanHangOnline.Models.Customer>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Danh sách sản phẩm"] = "Danh sách sản phẩm" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Quản lý khách hàng</h1>
+<div class="page-header">
+
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            @*<a class="breadcrumb-item" asp-area="Admin" asp-controller="Accounts" asp-action="Index">Danh sách tài khoản</a>*@
+
+            <span class="breadcrumb-item active">Danh sách khách hàng:Trang @CurrentPage</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Tên KH</th>
+
+                        <th>Birthday</th>
+                        <th>Address</th>
+
+                        <th>Ngày tạo</th>
+                  
+                        <th>Trạng Thái</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @item.CustomersId
+                                </td>
+
+                                <td>
+                                    <p>@item.FullName</p>
+                                    <p>@item.Phone</p>
+                                    <p>@item.Email</p>
+
+
+                                </td>
+
+                                <td>@item.Birthday</td>
+                                <td>@item.Address</td>
+
+                                <td>@item.CreateDate</td>
+                             
+
+                                <td>
+                                    @if (item.Active == true)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Active</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Block</div>
+                                        </div>
+
+                                    }
+                                </td>
+
+
+                                <td>
+
+                                    <a class="btn btn-primary m-r-5" asp-controller="Customers" asp-action="Details" asp-route-id="@item.CustomersId">Chi Tiêt</a>
+
+
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+
+                </tbody>
+            </table>
+            <div aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-are="Admin" asp-controller="Accounts" asp-action="Index"></pager>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

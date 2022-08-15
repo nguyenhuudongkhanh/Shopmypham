@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WebBanHangOnline.Models.Page>
+
+@{
+    ViewData["Title"] = "Quản lý page";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Mã page</th>
+                <th scope="col">Tên page</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Sắp xếp</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    string url = $"/page/{item.Alias}";
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pages)
+                </td>
+                <td>
+                    <a target="_blank" href="@url">@item.PageName</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contents)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thumb)
+                </td>
+                <td>
+                    @if (item.Pusblished == true)
+                    {
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-success badge-dot m-r-10"></div>
+                            <div>Active</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-warning badge-dot m-r-10"></div>
+                            <div>Block</div>
+                        </div>
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ordering)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Pages" class="dropdown-item d-block p-h-15 p-v-10">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <i class="anticon anticon-edit"></i>
+                                <span class="m-l-10 text-success    ">Edit</span>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Pages" class="dropdown-item d-block p-h-15 p-v-10">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <i class="anticon anticon-delete"></i>
+                                <span class="m-l-10 text-primary">Delete</span>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.Pages" class="dropdown-item d-block p-h-15 p-v-10">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <i class="anticon anticon-form"></i>
+                                <span class="m-l-10 text-danger">Detail</span>
+                            </div>
+
+                        </div>
+                    </a>
+
+
+                </td>
+            </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>

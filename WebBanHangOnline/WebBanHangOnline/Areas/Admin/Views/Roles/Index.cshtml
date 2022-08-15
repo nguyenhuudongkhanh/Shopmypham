@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebBanHangOnline.Models.Role>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+<p>
+    <a asp-action="Create">Tạo Mới Quyền Tuy Cập</a>
+</p>
+<h1>Quản lý quyền truy cập</h1>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Mã Truy Cập</th>
+                <th scope="col">Tên Truy Cập</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Tác Vụ</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+               
+                <td>
+                    <a class="btn btn-success m-r-5" asp-action="Edit" asp-route-id="@item.RoleId">Chỉnh Sửa</a>
+                    <a class="btn btn-primary m-r-5" asp-action="Details" asp-route-id="@item.RoleId">Chi Tiêt</a>
+                    <a class="btn btn-secondary m-r-5" asp-action="Delete" asp-route-id="@item.RoleId">Xóa</a>
+
+                </td>
+            </tr>
+                }
+            }
+           
+
+        </tbody>
+    </table>
+</div>
+
+
+

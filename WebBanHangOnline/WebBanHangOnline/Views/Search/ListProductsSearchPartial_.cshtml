@@ -1,0 +1,68 @@
+﻿@model List<Product>
+<div class="tab-pane fade" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+    <div class="product-list-view with-sidebar row">
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                string url = $"{item.Alias}-{item.ProductsId}.html";
+                <div class="col-12">
+                    <div class="product-item">
+                        <div class="product-img img-zoom-effect">
+                            <a href="@url">
+
+                                <img class="img-full" src="~/images/products/@item.Thumb" alt="@item.ProductsName">
+                            </a>
+                            <div class="product-add-action">
+                                <ul>
+                                    <li>
+                                        <a href="cart.html">
+                                            <i class="pe-7s-cart"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="compare.html">
+                                            <i class="pe-7s-shuffle"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="wishlist.html">
+                                            <i class="pe-7s-like"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <a class="product-name" href="single-product.html">@item.ProductsName</a>
+                            <div class="price-box pb-1">
+                                @if (item.Discount != 0)
+                                {
+                                    <span class="new-price text-danger">@item.Discount.Value.ToString("#,##0") VND</span>
+                                    <span class="old-price text-primary">@item.Price.Value.ToString("#,##0") VND</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price text-danger">@item.Price.Value.ToString("#,##0") VND</span>
+
+
+                                }
+                            </div>
+                            <div class="rating-box">
+                                <ul>
+                                    <li><i class="pe-7s-star"></i></li>
+                                    <li><i class="pe-7s-star"></i></li>
+                                    <li><i class="pe-7s-star"></i></li>
+                                    <li><i class="pe-7s-star"></i></li>
+                                    <li><i class="pe-7s-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+</div>

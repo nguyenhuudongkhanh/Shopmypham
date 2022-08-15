@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "W0owaliQQ0/s2W8RuwheraNj5lK+xiFlgaQJt8lBU3WM/K2H6rcz/pIqXoAe7ZHsDJvFwh1kyl4iDigDpTlrkA==",
+  "success": true,
+  "projectFilePath": "D:\\ThuMucLuuBaiMVC\\DuAnBanHangOnline\\WebBanHangOnline\\Test\\Test.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}

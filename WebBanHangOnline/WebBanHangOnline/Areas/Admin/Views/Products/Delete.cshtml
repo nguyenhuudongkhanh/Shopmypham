@@ -1,0 +1,189 @@
+﻿@model WebBanHangOnline.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Xóa sản phẩm</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
+            <span class="breadcrumb-item active">Thông Tin</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm: @Model.ProductsName</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>Mã sản phẩm:</td>
+                        <td class="text-dark font-weight-semibold">@Model.ProductsId</td>
+                    </tr>
+                    <tr>
+                        <td>Tên sản phẩm:</td>
+                        <td class="text-dark font-weight-semibold">@Model.ProductsName</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Mô tả ngắn:</td>
+                        <td class="text-dark font-weight-semibold">@Model.ShortDesc</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Mô tả:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Description</td>
+
+                    </tr>
+                    <tr>
+                        <td>Thuộc danh mục:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Cat.CatName</td>
+
+                    </tr>
+                    <tr>
+                        <td>Giá sản phẩm:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Price.Value.ToString("#,##0") VND</td>
+
+                    </tr>
+                    <tr>
+                        <td>Giảm giá:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Discount.Value.ToString("#,##0") VN</td>
+
+                    </tr>
+                    <tr>
+                        <td>Ảnh sản phẩm:</td>
+                        <td><img width="150" height="150" src="~/images//products/@Model.Thumb" alt="@Model.ProductsName"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Video sản phẩm:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Video</td>
+
+                    </tr>
+                    <tr>
+                        <td>Ngày tạo:</td>
+                        <td class="text-dark font-weight-semibold">@Model.DateCreated</td>
+
+                    </tr>
+                    <tr>
+                        <td>Ngày sửa:</td>
+                        <td class="text-dark font-weight-semibold">@Model.DateModifiled</td>
+
+                    </tr>
+                    <tr>
+                        <td>Trạng thái sản phẩm:</td>
+                        <td>
+                            @if (Model.Active == true)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Active</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-warning badge-dot m-r-10"></div>
+                                    <div>Block</div>
+                                </div>
+
+                            }
+                        </td>
+
+
+                    <tr>
+                        <td>Trạng thái BestSellers:</td>
+                        <td>
+                            @if (Model.BestSellers == true)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Active</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-warning badge-dot m-r-10"></div>
+                                    <div>Block</div>
+                                </div>
+
+                            }
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Trạng thái HomeFlag:</td>
+                        <td>
+                            @if (Model.HomeFlag == true)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Active</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-warning badge-dot m-r-10"></div>
+                                    <div>Block</div>
+                                </div>
+
+                            }
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Tiêu đề sản phẩm:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Tiltle</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Tên bí danh:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Alias</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td>Từ khóa:</td>
+                        <td class="text-dark font-weight-semibold">@Model.MetaKey</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Số lượng sản phẩm còn:</td>
+                        <td class="text-dark font-weight-semibold">@Model.UnitslnStock</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Xác nhận xóa:</td>
+                        <td>
+                            <form asp-action="Delete" asp-controller="Products" asp-route-id="@Model.ProductsId">
+                                <input type="hidden" asp-for="ProductsId" />
+                                <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> |
+                                <a asp-action="Index">Back to List</a>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+   </div>

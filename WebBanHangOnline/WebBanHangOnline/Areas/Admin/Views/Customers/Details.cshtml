@@ -1,0 +1,112 @@
+﻿@model WebBanHangOnline.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Xem tin</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="News" asp-action="Index">News</a>
+            <span class="breadcrumb-item active">Thông Tin</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin khách hàng: @Model.FullName</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>Ngày sinh:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Birthday</td>
+                    </tr>
+                    <tr>
+                        <td>Ảnh:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Avatar</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Address</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Email:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Email</td>
+
+                    </tr>
+                    <tr>
+                        <td>Điện thoại:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Phone</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Thành phố:</td>
+                        <td class="text-dark font-weight-semibold">@Model.LocationId</td>
+
+                    </tr>
+                    <tr>
+                        <td>Quận:</td>
+                        <td class="text-dark font-weight-semibold">@Model.District</td>
+
+                    </tr>
+                    <tr>
+                        <td>Huyện:</td>
+                        <td class="text-dark font-weight-semibold">@Model.Ward</td>
+
+                    </tr>
+                    <tr>
+                        <td>Ngày đăng ký:</td>
+                        <td class="text-dark font-weight-semibold">@Model.CreateDate</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Đăng nhập lần cuối:</td>
+                        <td class="text-dark font-weight-semibold">@Model.LastLogin</td>
+
+                    </tr>
+                    <tr>
+                        <td>Trạng thái :</td>
+                        <td>
+                            @if (Model.Active == true)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Active</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-warning badge-dot m-r-10"></div>
+                                    <div>Block</div>
+                                </div>
+
+                            }
+                        </td>
+
+                    </tr>
+
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <a class="btn btn-info m-r-5" asp-action="Edit" asp-route-id="@Model.CustomersId">Chỉnh Sửa</a> |
+    <a class="btn btn-warning m-r-5" asp-action="Index">Quay Lại</a>
+</div>
+
